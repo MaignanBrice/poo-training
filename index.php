@@ -1,3 +1,7 @@
+<?php 
+spl_autoload_register();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,6 +13,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <title>POO - Des élèves</title>
 </head>
+
 
 <body class="dark-template">
     <div class="container">
@@ -24,7 +29,7 @@
                 </ul>
             </nav>
         </header>
-        
+
         <!-- QUESTION 1 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 1</h2>
@@ -36,10 +41,24 @@
                 Créer 2 étudiants différents.
             </p>
             <div class="exercice-sandbox">
-    
+
+                <?php
+                
+
+                use App\Models\Student;
+
+                $student1 = new Student('Jean', 'Doe', new DateTime('2000-12-30'), '5ème', "Sainte-Marie");
+                $student2 = new Student('Jeanne', 'Doe', new DateTime('1998-06-30'), 'Terminale', 'Sacré coeur');
+
+                var_dump($student1, $student2);
+
+
+                ?>
+
+
             </div>
         </section>
-        
+
         <!-- QUESTION 2 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 2</h2>
@@ -49,10 +68,14 @@
                 Modifier le niveau scolaire des 2 élèves et les afficher.
             </p>
             <div class="exercice-sandbox">
-    
+
+                <?php
+                $student1->setLevel('Mediocre');
+                var_dump($student1->getLevel());
+                ?>
             </div>
         </section>
-        
+
         <!-- QUESTION 3 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 3</h2>
@@ -62,10 +85,13 @@
                 Mettez à jour l'instanciation des 2 élèves et afficher leur date de naissance.
             </p>
             <div class="exercice-sandbox">
-
+                <?php
+                var_dump($student1->getBirthdate()->format('d M Y'));
+                var_dump($student2->getBirthdate()->format('d M Y'));
+                ?>
             </div>
         </section>
-        
+
         <!-- QUESTION 4 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 4</h2>
@@ -76,10 +102,14 @@
             </p>
             <div class="exercice-sandbox">
 
+                <?php
+                var_dump($student1->displayAge());
+                var_dump($student2->displayAge());
+                ?>
 
             </div>
         </section>
-        
+
         <!-- QUESTION 5 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 5</h2>
@@ -89,10 +119,13 @@
                 Ajouter la propriété et ajouter la donnée sur les élèves.
             </p>
             <div class="exercice-sandbox">
-
+                <?php
+                var_dump($student1->getSchool());
+                var_dump($student2->getSchool());
+                ?>
             </div>
         </section>
-        
+
         <!-- QUESTION 6 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 6</h2>
@@ -104,10 +137,19 @@
             </p>
             <div class="exercice-sandbox">
 
+
+                <?php
+
+                $student1->presentation();
+                $student2->presentation();
+
+
+                ?>
             </div>
         </section>
 
     </div>
     <div class="copyright">© Guillaume Belleuvre, 2023 - DWWM</div>
 </body>
+
 </html>

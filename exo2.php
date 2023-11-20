@@ -1,3 +1,7 @@
+<?php 
+spl_autoload_register();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +28,7 @@
                 </ul>
             </nav>
         </header>
-        
+
         <!-- QUESTION 1 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 1</h2>
@@ -36,11 +40,19 @@
                 Créer 2 professeurs différents.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+
+                use App\Models\Professor;
+
+                $prof1 = new Professor('Georges', 'Miche', new DateTime('1980-02-15'), ['French', 'English'], 'Sacré Coeur');
+                $prof2 = new Professor('Micheline', 'LoveMaths', new DateTime('1975-11-18'), ['Maths'], 'Notre Dame');
+
+                var_dump($prof1, $prof2);
+                ?>
             </div>
         </section>
-        
-        
+
+
         <!-- QUESTION 2 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 2</h2>
@@ -52,11 +64,16 @@
                 Afficher les écoles des 2 professeurs.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                $prof1->setSchoolName('Saint Joseph');
+                $prof2->setSchoolName('Lycée Jeanne d\'Arc');
+
+                var_dump($prof1->getSchoolName(), $prof2->getSchoolName());
+                ?>
             </div>
         </section>
-        
-        
+
+
         <!-- QUESTION 3 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 3</h2>
@@ -66,7 +83,13 @@
                 Tester l'ajout, la suppression et l'affichage sur chacun des profs.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+                var_dump($prof1->displaySubjects());
+                $prof1->addSubject('German');
+                var_dump($prof1->displaySubjects());
+                $prof1->removeSubject('French');
+                var_dump($prof1->displaySubjects());
+                ?>
             </div>
         </section>
 
@@ -81,11 +104,17 @@
                 Afficher la phrase de présentation des 2 profs.
             </p>
             <div class="exercice-sandbox">
-                
+
+                <?php
+
+                $prof1->presentation();
+                $prof2->presentation();
+                ?>
             </div>
         </section>
 
     </div>
     <div class="copyright">© Guillaume Belleuvre, 2023 - DWWM</div>
 </body>
+
 </html>
