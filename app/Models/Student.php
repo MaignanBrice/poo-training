@@ -1,23 +1,20 @@
 <?php
 
-
-
 namespace App\Models;
 
 use \DateTime;
 
 
-class Student extends Human
+final class Student extends Human
 {
-
+    private School $school;
     private string $level;
-    private string $schoolname;
 
-    public function __construct(string $lastname, string $firstname, DateTime $birthdate, string $level, string $schoolname)
+    public function __construct(string $lastname, string $firstname, DateTime $birthdate, string $level, School $school)
     {
         parent::__construct($lastname, $firstname, $birthdate);
         $this->level = $level;
-        $this->schoolname = $schoolname;
+        $this->school = $school;
     }
 
     /* -----------
@@ -32,13 +29,13 @@ class Student extends Human
     {
         return $this->level;
     }
-    public function setSchool(string $school): void
+    public function setSchool(School $school): void
     {
-        $this->schoolname = $school;
+        $this->school = $school;
     }
-    public function getSchool(): string
+    public function getSchool(): School
     {
-        return $this->schoolname;
+        return $this->school;
     }
 
     /* -----------
@@ -47,6 +44,6 @@ class Student extends Human
 
     public function presentation(): void
     {
-        echo parent::presentation() . "Je suis élève en classe de {$this->level} à l'école {$this->schoolname} <br>";
+        echo parent::presentation() . "Je suis élève en classe de {$this->level} à l'école {$this->school->getSchoolName()} <br>";
     }
 }

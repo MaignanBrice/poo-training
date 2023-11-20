@@ -4,7 +4,7 @@ namespace App\Models;
 
 use \DateTime;
 
-class Human {
+abstract class Human {
 
 
     private string $lastname;

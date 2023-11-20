@@ -4,18 +4,18 @@ namespace App\Models;
 
 use DateTime;
 
-class Professor extends Human
+final class Professor extends Human
 {
 
     private array $subjects;
-    private string $schoolname;
+    private School $school;
 
 
-    public function __construct(string $lastname, string $firstname, DateTime $birthdate, array $subjects = [], string $schoolname = '')
+    public function __construct(string $lastname, string $firstname, DateTime $birthdate, array $subjects = [], School $school = NULL)
     {
         parent::__construct($lastname, $firstname, $birthdate);
         $this->subjects = $subjects;
-        $this->schoolname = $schoolname;
+        $this->school = $school;
     }
 
     /* -----------
@@ -26,18 +26,18 @@ class Professor extends Human
     {
         return $this->subjects;
     }
-    public function getSchoolName(): string
+    public function getSchoolName(): School
     {
-        return $this->schoolname;
+        return $this->school;
     }
 
-    public function setSubjects($array): void
+    public function setSubjects(array $array): void
     {
         $this->subjects = $array;
     }
-    public function setSchoolName($name): void
+    public function setSchool(School $school): void
     {
-        $this->schoolname = $name;
+        $this->school = $school;
     }
 
     /* -----------
@@ -62,6 +62,6 @@ class Professor extends Human
 
     public function presentation(): void
     {
-        echo parent::presentation() . "J'enseigne dans l'école {$this->schoolname} les matières suivantes : " . $this->displaySubjects() . "<br>";
+        echo parent::presentation() . "J'enseigne dans l'école {$this->school->getSchoolName()} les matières suivantes : " . $this->displaySubjects() . "<br>";
     }
 }

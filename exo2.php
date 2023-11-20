@@ -42,10 +42,13 @@ spl_autoload_register();
             <div class="exercice-sandbox">
                 <?php
 
-                use App\Models\Professor;
+use App\Models\Lycee;
+use App\Models\College;
+use App\Models\Elementary;
+use App\Models\Professor;
 
-                $prof1 = new Professor('Georges', 'Miche', new DateTime('1980-02-15'), ['French', 'English'], 'Sacré Coeur');
-                $prof2 = new Professor('Micheline', 'LoveMaths', new DateTime('1975-11-18'), ['Maths'], 'Notre Dame');
+                $prof1 = new Professor('Georges', 'Miche', new DateTime('1980-02-15'), ['French', 'English'], new College('Sacré Coeur', 'Paris'));
+                $prof2 = new Professor('Micheline', 'LoveMaths', new DateTime('1975-11-18'), ['Maths'], new Elementary('Trudeau', 'Dijon'));
 
                 var_dump($prof1, $prof2);
                 ?>
@@ -65,10 +68,10 @@ spl_autoload_register();
             </p>
             <div class="exercice-sandbox">
                 <?php
-                $prof1->setSchoolName('Saint Joseph');
-                $prof2->setSchoolName('Lycée Jeanne d\'Arc');
+                $prof1->setSchool(new Lycee('Jeanne d\'Arc', 'Caen'));
 
                 var_dump($prof1->getSchoolName(), $prof2->getSchoolName());
+                var_dump($prof1->displayAge(), $prof2->displayAge());
                 ?>
             </div>
         </section>

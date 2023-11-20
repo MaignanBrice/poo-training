@@ -1,4 +1,4 @@
-<?php 
+<?php
 spl_autoload_register();
 ?>
 
@@ -43,15 +43,15 @@ spl_autoload_register();
             <div class="exercice-sandbox">
 
                 <?php
-                
 
+                use App\Models\College;
+                use App\Models\Lycee;
                 use App\Models\Student;
 
-                $student1 = new Student('Jean', 'Doe', new DateTime('2000-12-30'), '5ème', "Sainte-Marie");
-                $student2 = new Student('Jeanne', 'Doe', new DateTime('1998-06-30'), 'Terminale', 'Sacré coeur');
+                $student1 = new Student('Jean', 'Doe', new DateTime('2000-12-30'), '5ème', new College('Sainte Marie', 'Caen'));
+                $student2 = new Student('Jeanne', 'Doe', new DateTime('1998-06-30'), 'Terminale', new Lycee("Jeanne D`'Arc", 'Caen'));
 
                 var_dump($student1, $student2);
-
 
                 ?>
 
@@ -70,7 +70,7 @@ spl_autoload_register();
             <div class="exercice-sandbox">
 
                 <?php
-                $student1->setLevel('Mediocre');
+                $student1->setLevel('4ème');
                 var_dump($student1->getLevel());
                 ?>
             </div>

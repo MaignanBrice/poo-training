@@ -1,3 +1,12 @@
+<?php
+spl_autoload_register();
+
+use App\Models\Lycee;
+use App\Models\College;
+use App\Models\Elementary;
+use App\Models\School;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,25 +33,34 @@
                 </ul>
             </nav>
         </header>
-        
+
         <!-- QUESTION 1 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 1</h2>
-            <p class="exercice-txt"> 
+            <p class="exercice-txt">
                 Créer une classe permettant de gérer des écoles avec un nom d'école et une ville.
                 <br>
                 Créer 2 écoles et afficher leurs proprités.
             </p>
             <div class="exercice-sandbox">
+                <?php
 
+
+                // Code non fonctionnel car classe School désormais Abstraite
+                // $school1 = new School('Flaubert', 'Caen');
+                // $school2 = new School('Sacré Coeur', 'Paris');
+
+                // var_dump($school1, $school2);
+
+                ?>
             </div>
         </section>
-        
-        
+
+
         <!-- QUESTION 2 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 2</h2>
-            <p class="exercice-txt"> 
+            <p class="exercice-txt">
                 Créer 3 classes correspondants aux 3 types d'école suivants : primaire, des collège et des lycée.
                 <br>
                 Pour chaque type d'école définir la liste des niveaux scolaires qu'il prend en charge (ex de niveau scolaire : "CP", "CM2", "5ème", "Terminale", ...).
@@ -50,37 +68,53 @@
                 Créer une école de chaque type.
             </p>
             <div class="exercice-sandbox">
-                
+                <?php
+
+                $elementary = new Elementary('Saint Jean', 'Dijon');
+                $college = new College('Verlaine', 'Nantes');
+                $lycee = new Lycee("Jeanne d'\arc", 'Rennes');
+
+                var_dump($elementary, $college, $lycee);
+
+                var_dump($elementary::getGradesList());
+
+
+                ?>
             </div>
         </section>
 
-        
+
         <!-- QUESTION 3 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 3</h2>
-            <p class="exercice-txt"> 
+            <p class="exercice-txt">
                 Créer une méthode permettant d'interroger un type d'école pour savoir s'il prend en charge un niveu scolaire.
                 <br>
                 Tester la méthode créée.
             </p>
             <div class="exercice-sandbox">
+                <?php
+                var_dump($lycee->isGradeAvailable('6ème'));
+                var_dump($college->isGradeAvailable('6ème'));
                 
+                ?>
             </div>
         </section>
 
         <!-- QUESTION 4 -->
         <section class="exercice">
             <h2 class="exercice-ttl">Question 4</h2>
-            <p class="exercice-txt"> 
+            <p class="exercice-txt">
                 Remplacer les propriétés "école" des élèves et des professeurs par la classe créée.
                 <br>
                 Ajuster le code de toutes les classes afin que tous les exercices précédents fonctionnent à nouveau.
             </p>
             <div class="exercice-sandbox">
-                
+
             </div>
         </section>
     </div>
     <div class="copyright">© Guillaume Belleuvre, 2023 - DWWM</div>
 </body>
+
 </html>
